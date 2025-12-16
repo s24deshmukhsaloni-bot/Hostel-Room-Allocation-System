@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+class HostelRoomAllocation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int room[] = new int[10];
+        int choice, rno;
+
+        while (true) {
+            System.out.println("\n--- Hostel Room Allocation System ---");
+            System.out.println("1. Display Room Status");
+            System.out.println("2. Allocate Room");
+            System.out.println("3. Vacate Room");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    for (int i = 0; i < room.length; i++) {
+                        if (room[i] == 0)
+                            System.out.println("Room " + (i + 1) + " : Available");
+                        else
+                            System.out.println("Room " + (i + 1) + " : Occupied");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter room number to allocate: ");
+                    rno = sc.nextInt();
+                    if (rno < 1 || rno > 10)
+                        System.out.println("Invalid room number");
+                    else if (room[rno - 1] == 1)
+                        System.out.println("Room already occupied");
+                    else {
+                        room[rno - 1] = 1;
+                        System.out.println("Room allocated successfully");
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter room number to vacate: ");
+                    rno = sc.nextInt();
+                    if (rno < 1 || rno > 10)
+                        System.out.println("Invalid room number");
+                    else if (room[rno - 1] == 0)
+                        System.out.println("Room already vacant");
+                    else {
+                        room[rno - 1] = 0;
+                        System.out.println("Room vacated successfully");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Thank you for using the system");
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+    } 
